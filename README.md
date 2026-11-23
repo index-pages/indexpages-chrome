@@ -92,7 +92,8 @@ lib/storage.js      chrome.storage access
 background.js       service worker: context menus and badge
 popup.*, options.*  the two pages; ui.css is shared
 tests/              node:test suites; live.mjs is a manual live check
-store/              Chrome Web Store listing texts (not shipped)
+store/              Chrome Web Store listing texts and images (not shipped)
+tools/              store-screenshots.mjs, see below (not shipped)
 ```
 
 ### Tests
@@ -136,6 +137,30 @@ a validation error, and runs one 1-URL order, so it spends one URL of balance:
 ```sh
 IP_API_BASE=http://127.0.0.1:8080/v1 IP_API_KEY_FILE=/path/to/key node tests/live.mjs
 ```
+
+### Store screenshots
+
+```sh
+node tools/store-screenshots.mjs --fonts /path/to/site/fonts
+```
+
+writes `store/assets/screenshot-1.png` … `screenshot-5.png` (1280×800, 24-bit
+RGB, no alpha, no metadata). The script serves this directory locally and
+renders the real `popup.html` and `options.html` in headless Chromium with the
+production config, a stubbed `chrome.*` and a stubbed `fetch` that answers
+`https://api.index-pages.com/v1` with made-up fixture data in the API's shapes
+(balance $48.00, a key named "Chrome extension", orders and URLs on
+`example.com` / `example.org`). Nothing reaches a real API and no real key is
+used, so there is no dev badge and no loopback host in the pictures. Each page
+is captured at 2x, cut at a section edge and placed on the dark brand canvas
+with its headline; `magick` flattens and strips the result.
+
+`--fonts` points at a directory with the site's `inter-tight-300-700-latin.woff2`,
+`jetbrains-mono-400-500-latin.woff2` and `source-serif-4-300-700-latin.woff2`,
+the families `ui.css` asks for first; without it the system fallbacks are
+used. Needs Node 22+, Chromium or Chrome (`--chrome PATH` or `$CHROME`) and
+ImageMagick 7. Headlines, fixtures and crop points are at the top of the
+script. `store/assets/promo-small-440x280.png` is made separately.
 
 ## Packaging
 
