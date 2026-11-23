@@ -1,0 +1,24 @@
+Index Pages speeds up the indexing of your URLs in search engines. This extension is a companion to your Index Pages account: collect pages while you browse and send them as an order without leaving the tab.
+
+What it does
+
+• Add this page – one click puts the current tab's address into a list kept in your browser.
+• Right-click any link and choose "Add link to Index Pages list", or right-click a page and choose "Add this page to Index Pages list". The toolbar icon shows how many URLs are waiting.
+• Paste more URLs, one per line. Duplicates, non-web addresses and local or private addresses are filtered out before anything is sent.
+• Create draft – turns the list into a draft order in your account. Drafts cost nothing.
+• Create and run – creates the order, then shows exactly what it will cost against your balance and runs it only after you confirm.
+• See your balance, the price per URL and your ten most recent orders with their status and progress. Every order links to its page in the dashboard.
+• Errors from the service are shown in plain words, including which URL was rejected and why. If the balance is too low, a link takes you to the top-up page.
+
+Your key, your control
+
+The extension works with an API key you create in the Index Pages dashboard (Settings → API keys). Each key carries scopes, and the extension only offers what the key allows. If you want drafts only, create a key without the orders:run scope: such a key cannot spend money at all. A double click or a lost connection never creates two orders or charges twice.
+
+Privacy
+
+The key is stored only in this browser's local extension storage and is not synced. The extension contacts one server, api.index-pages.com, and sends it only the URLs you choose and your key. It reads a page's address only when you click "Add this page" or use the right-click menu. No analytics, no tracking, no other data collected.
+
+You need an Index Pages account with a verified email to create a key. Orders are paid from your prepaid balance at the price shown in the dashboard.
+
+Privacy policy: https://index-pages.com/privacy/
+Support: support@index-pages.com

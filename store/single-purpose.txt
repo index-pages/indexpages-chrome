@@ -1,0 +1,1 @@
+The extension has one purpose: to submit URLs that the user chooses – the current page or links collected from pages – to the user's own Index Pages account as indexing orders through the Index Pages API, and to show that account's balance and order status.

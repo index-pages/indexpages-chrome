@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index Pages – Settings</title>
+  <link rel="stylesheet" href="ui.css">
+  <link rel="stylesheet" href="options.css">
+  <script type="module" src="options.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="page-top">
+      <a class="brand" href="https://index-pages.com/" target="_blank" rel="noopener">
+        <img src="icons/logo.svg" alt="" width="24" height="24">
+        <span class="wordmark">Index<span class="dot" aria-hidden="true">·</span><span class="second">Pages</span></span>
+        <span class="visually-hidden">– open index-pages.com in a new tab</span>
+      </a>
+      <a class="btn btn-small" href="https://index-pages.com/app" target="_blank" rel="noopener">Dashboard <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <h1 class="page-title">Extension settings</h1>
+
+      <div id="dev-note" class="notice is-caution" role="note" hidden>
+        <p class="notice-title">dev API</p>
+        <p class="notice-body" id="dev-note-body"></p>
+      </div>
+
+      <section class="card" aria-labelledby="key-title">
+        <h2 id="key-title" class="card-title">API key</h2>
+
+        <div id="key-view" hidden>
+          <dl class="facts">
+            <div><dt>Key</dt><dd><code id="key-mask"></code></dd></div>
+            <div><dt>Name</dt><dd id="key-name"></dd></div>
+            <div><dt>Checked</dt><dd id="key-checked"></dd></div>
+          </dl>
+          <h3 class="sub-title">What this key allows</h3>
+          <ul class="scopes" id="key-scopes"></ul>
+          <p id="key-summary" class="hint"></p>
+          <div class="row">
+            <button type="button" class="btn" id="recheck">Check again</button>
+            <button type="button" class="btn" id="replace">Replace key</button>
+            <button type="button" class="btn btn-risk" id="remove">Remove key</button>
+          </div>
+        </div>
+
+        <form id="key-form" class="key-form" novalidate hidden>
+          <div class="field">
+            <label class="field-label" for="key-input">Paste your API key</label>
+            <div class="key-input-row">
+              <input id="key-input" class="input mono" type="password" autocomplete="off" spellcheck="false"
+                     placeholder="ipk_live_…" aria-describedby="key-hint key-error">
+              <button type="button" class="btn" id="toggle-key" aria-pressed="false" aria-controls="key-input">Show</button>
+            </div>
+            <p id="key-hint" class="hint">Create a key in the dashboard under <a href="https://index-pages.com/app/settings" target="_blank" rel="noopener">Settings → API keys</a>. It is shown only once, so paste it here right away.</p>
+            <p id="key-error" class="field-error" role="alert"></p>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn btn-fill" id="save">Verify and save <span class="arr" aria-hidden="true">→</span></button>
+            <button type="button" class="btn btn-quiet" id="cancel-replace" hidden>Cancel</button>
+          </div>
+        </form>
+
+        <div id="status" class="status" aria-live="polite"></div>
+      </section>
+
+      <section class="card" aria-labelledby="scopes-title">
+        <h2 id="scopes-title" class="card-title">Which scopes to give the key</h2>
+        <p>When you create the key in the dashboard you tick its scopes. The extension uses each one for one thing and hides what the key cannot do.</p>
+        <table class="scope-table">
+          <thead><tr><th scope="col">Scope</th><th scope="col">Used for</th></tr></thead>
+          <tbody>
+            <tr><td><code>balance:read</code></td><td>Showing the balance and the price per URL, and checking the cost before a run.</td></tr>
+            <tr><td><code>orders:read</code></td><td>Listing recent orders with their status and progress.</td></tr>
+            <tr><td><code>orders:write</code></td><td>Creating drafts from your URL list and deleting drafts.</td></tr>
+            <tr><td><code>orders:run</code></td><td>Running a draft. <strong>This spends your balance.</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="notice is-info">
+          <p class="notice-title">Recommended: a key without orders:run</p>
+          <p class="notice-body">If you only want to collect URLs into drafts and decide on payment in the dashboard, create a key with <code>balance:read</code>, <code>orders:read</code> and <code>orders:write</code> and leave <code>orders:run</code> unticked. Such a key cannot spend money, even if it leaks.</p>
+        </div>
+        <p class="hint">With orders:run, every run still asks you to confirm the cost first.</p>
+      </section>
+
+      <section class="card" aria-labelledby="privacy-title">
+        <h2 id="privacy-title" class="card-title">Privacy</h2>
+        <ul class="bullets">
+          <li>The key is kept in this browser’s local extension storage. It is not synced to other devices.</li>
+          <li>The key and the URLs you choose to send go only to <span id="api-host">api.index-pages.com</span>.</li>
+          <li>No analytics, no tracking, no browsing history. The extension reads a page’s address only when you ask it to.</li>
+        </ul>
+        <p><a href="https://index-pages.com/privacy/" target="_blank" rel="noopener">Privacy policy</a> · <a href="mailto:support@index-pages.com">support@index-pages.com</a></p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
